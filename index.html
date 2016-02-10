@@ -30,6 +30,9 @@
       display: block;
       padding: 0.25rem;
     }
+    .Nav {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -39,9 +42,11 @@
   <input class="Input" type="text" name="userId" readonly autofocus/>
   <hr>
   <p>Video Chat</p>
-  <button class="Button" onclick="onClickStartChat()">Start Video Chat</button>
-  <button class="Button" onclick="onClickCallChat()">Call Another User</button>
-  <button class="Button" onclick="onClickHangup()">Hangup</button>
+  <nav class="Nav">
+    <button class="Button" onclick="onClickStartChat()">Start</button>
+    <button class="Button" onclick="onClickCallChat()">Call</button>
+    <button class="Button" onclick="onClickHangup()">Hangup</button>
+  </nav>
   <div class="VideoContainer">
     <video class="Video Video--Local" autoplay></video>
     <video class="Video Video--Remote" autoplay muted></video>
