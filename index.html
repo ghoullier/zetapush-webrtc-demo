@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://static.zpush.io/js/1.1.11/zetapush.min.js"></script>
   <style type="text/css">
+    .Title {
+      text-align: center;
+      margin: 0;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #000;
+    }
     .VideoContainer {
       font-size: 0;
     }
@@ -17,8 +23,7 @@
       background-color: #000;
       display: inline-block;
     }
-
-    .Input {
+    .Output {
       line-height: 1rem;
       padding: 0.25rem;
       width: 12.5rem;
@@ -37,12 +42,9 @@
   </style>
 </head>
 <body>
-  <h1>WebRTC with ZetaPush</h1>
-  <hr>
-  <p>Connected  User</p>
-  <input class="Input" type="text" name="userId" readonly autofocus/>
-  <hr>
-  <p>Video Chat</p>
+  <h1 class="Title">WebRTC with ZetaPush</h1>
+  <label>Your User Id: <input class="Output" type="text" name="userId" readonly/></label>
+  <h2 class="Title">Video Chat</h2>
   <nav class="Nav">
     <button class="Button" onclick="onClickStartChat()">Start</button>
     <button class="Button" onclick="onClickCallChat()">Call</button>
