@@ -8,9 +8,14 @@
   <style type="text/css">
     .Title {
       text-align: center;
-      margin: 0;
+      margin: 0 0 0.5rem 0;
       padding: 0.75rem 0;
       border-bottom: 1px solid #000;
+    }
+    .Tip {
+      display: block;
+      text-align: center;
+      margin: 0 0 0.5rem 0;
     }
     .VideoContainer {
       font-size: 0;
@@ -43,8 +48,8 @@
 </head>
 <body>
   <h1 class="Title">WebRTC with ZetaPush</h1>
+  <em class="Tip">Share your UserId to your interlocutor</em>
   <label>Your User Id: <input class="Output" type="text" name="userId" readonly/></label>
-  <h2 class="Title">Video Chat</h2>
   <nav class="Nav">
     <button class="Button" onclick="onClickStartChat()">Start</button>
     <button class="Button" onclick="onClickCallChat()">Call</button>
