@@ -29,7 +29,7 @@ var zpWebRTC = (function() {
     stream;
 
   var localVideo = document.querySelector('.Video--Local');
-  var remoteVideo = document.querySelector('Video--Remote');
+  var remoteVideo = document.querySelector('.Video--Remote');
   var localStream;
   var pc1;
   var offerOptions = {
