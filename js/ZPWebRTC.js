@@ -25,7 +25,8 @@ var zpWebRTC = (function() {
       { 'url': 'stun:stun.iptel.org' }
     ]},
     //peerConnections = {},
-    currentId, videoInProgress= false,
+    currentId,
+    videoInProgress= false,
     stream;
 
   var localVideo = document.querySelector('.Video--Local');
@@ -204,8 +205,8 @@ var zpWebRTC = (function() {
     { mandatory: { OfferToReceiveVideo: true, OfferToReceiveAudio: true }});
   }
 
-  function hangup(userId){
-    console.log('hangup', userId);
+  function hangup(){
+    console.log('hangup', currentUserId);
     for (var key in peers) {
       peers[key].connection.close();
       var msg={
