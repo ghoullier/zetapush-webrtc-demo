@@ -18,34 +18,35 @@
       display: inline-block;
     }
 
-    [name="userId"] {
+    .Input {
       line-height: 1rem;
       padding: 0.25rem;
       width: 12.5rem;
       text-align: center;
     }
+    .Button {
+      line-height: 2rem;
+      font-size: 1.5rem;
+      display: block;
+      padding: 0.25rem;
+    }
   </style>
 </head>
 <body>
-  <h1>ATE with ZetaPush <strong></strong></h1>
-
+  <h1>WebRTC with ZetaPush</h1>
   <hr>
   <p>Connected  User</p>
-  <input type="text" name="userId" readonly autofocus/>
-
+  <input class="Input" type="text" name="userId" readonly autofocus/>
   <hr>
   <p>Video Chat</p>
-  <button onclick="onClickStartChat()">StartChat</button>
-  <label>chatUserId: <input type="text" name="chatUserId"/></label>
-  <button onclick="onClickCallChat()">CallChat</button>
-  <button onclick="onClickHangup()">Hangup</button>
-
+  <button class="Button" onclick="onClickStartChat()">Start Video Chat</button>
+  <button class="Button" onclick="onClickCallChat()">Call Another User</button>
+  <button class="Button" onclick="onClickHangup()">Hangup</button>
   <div class="VideoContainer">
     <video class="Video Video--Local" autoplay></video>
     <video class="Video Video--Remote" autoplay muted></video>
   <div>
   <script>
-
     // Business Id
     var businessId= '8w_De_U5';
     zp.init(businessId);
@@ -75,23 +76,22 @@
 
     function onClickStartChat(){
       console.log('Start Chat');
-
       zpWebRTC.startVideo();
     }
 
     function onClickCallChat(){
       console.log('Call chat');
-
-      var userId= document.querySelector('[name="chatUserId"]').value;
-
-      zpWebRTC.makeOffer(userId);
+      var userId = prompt('User Id to call');
+      if (userId) {
+        zpWebRTC.makeOffer(userId);
+      } else {
+        alert('Invalid User Id')
+      }
     }
 
     function onClickHangup(){
       console.log('Hangup');
-
       var userId= document.querySelector('[name="chatUserId"]').value;
-
       zpWebRTC.hangup(userId);
     }
   </script>
