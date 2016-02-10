@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>WebRTC with ZetaPush</title>
+  <meta charset="utf-8" />
+  <script src="http://static.zpush.io/js/1.1.8/zetapush.min.js"></script>
+  <style type="text/css">
+    .VideoContainer {
+      font-size: 0;
+    }
+    .Video {
+      height: 25rem;
+      margin: 0 0.5rem;
+      vertical-align: top;
+      width: calc(50% - 1rem);
+      background-color: #000;
+      display: inline-block;
+    }
+
+    [name="userId"] {
+      line-height: 1rem;
+      padding: 0.25rem;
+      width: 12.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>ATE with ZetaPush <strong></strong></h1>
+
+  <hr>
+  <p>Connected  User</p>
+  <input type="text" name="userId" readonly autofocus/>
+
+  <hr>
+  <p>Video Chat</p>
+  <button onclick="onClickStartChat()">StartChat</button>
+  <label>chatUserId: <input type="text" name="chatUserId"/></label>
+  <button onclick="onClickCallChat()">CallChat</button>
+  <button onclick="onClickHangup()">Hangup</button>
+
+  <div class="VideoContainer">
+    <video class="Video Video--Local" autoplay></video>
+    <video class="Video Video--Remote" autoplay muted></video>
+  <div>
+  <script>
+
+    // Business Id
+    var businessId= '8w_De_U5';
+    zp.init(businessId);
+    var authentWeak= new zp.authent.Weak('jFbp');
+    var userId;
+
+    // Retrieve or get a resource name for the current user (optionnal)
+    if (!localStorage['resource']){
+      localStorage['resource']= zp.makeResourceId();
+    }
+
+    // Callback when you get connected
+    zp.onConnected(function(msg){
+      // Store the token ZetaPush gives you
+      if (authentWeak.getToken()){
+        localStorage['token']= authentWeak.getToken();
+        localStorage['publicToken']= authentWeak.getPublicToken();
+      }
+      userId= authentWeak.getUserId();
+      console.log('You are connected with userId ', authentWeak.getUserId());
+      document.querySelector('[name="userId"]').value = userId
+    });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+      zp.connect(authentWeak.getConnectionData(localStorage['token'], localStorage['resource'])); //, "http://vm-zbo:8080/zbo/pub/business/"
+    });
+
+    function onClickStartChat(){
+      console.log('Start Chat');
+
+      zpWebRTC.startVideo();
+    }
+
+    function onClickCallChat(){
+      console.log('Call chat');
+
+      var userId= document.querySelector('[name="chatUserId"]').value;
+
+      zpWebRTC.makeOffer(userId);
+    }
+
+    function onClickHangup(){
+      console.log('Hangup');
+
+      var userId= document.querySelector('[name="chatUserId"]').value;
+
+      zpWebRTC.hangup(userId);
+    }
+  </script>
+  <script src="bower_components/webrtc-adapter/adapter.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/ZPWebRTC.js"></script>
+</body>
+</html>

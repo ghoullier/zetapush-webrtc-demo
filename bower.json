@@ -1,0 +1,21 @@
+{
+  "name": "ATE",
+  "version": "0.0.0",
+  "authors": [
+    "Mikael Morvan <mikaelmorvan@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webrtc-adapter": "~0.2.5"
+  }
+}
