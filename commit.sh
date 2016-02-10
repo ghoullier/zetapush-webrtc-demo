@@ -1,3 +1,6 @@
+git stash
+git checkout master
+git stash pop
 git add .
 git commit
 git push origin master
