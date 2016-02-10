@@ -206,7 +206,7 @@ var zpWebRTC = (function() {
   }
 
   function hangup(){
-    console.log('hangup', currentUserId);
+    console.log('hangup');
     for (var key in peers) {
       peers[key].connection.close();
       var msg={
